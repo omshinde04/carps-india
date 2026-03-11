@@ -7,23 +7,6 @@ import { X } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
 
-const galleryImages = [
-  { url: "/environment/WhatsApp Image 2025-12-18 at 4.56.34 PM.jpeg", alt: "Learning Experience" },
-  { url: "/environment/WhatsApp Image 2025-12-18 at 4.56.38 PM.jpeg", alt: "Student Interaction" },
-  { url: "/environment/WhatsApp Image 2025-12-18 at 4.56.54 PM.jpeg", alt: "Training Session" },
-  { url: "/environment/WhatsApp Image 2025-12-18 at 4.57.15 PM.jpeg", alt: "Collaboration Hub" },
-  { url: "/environment/WhatsApp Image 2025-12-18 at 4.57.16 PM.jpeg", alt: "Learning Environment" },
-  { url: "/environment/WhatsApp Image 2025-12-18 at 6.06.32 PM.jpeg", alt: "Technology Workshop" },
-  { url: "/environment/WhatsApp Image 2025-12-18 at 6.06.35 PM.jpeg", alt: "Student Mentorship" },
-  { url: "/environment/WhatsApp Image 2025-12-18 at 6.18.43 PM.jpeg", alt: "Learning in Progress" },
-  { url: "/environment/WhatsApp Image 2025-12-18 at 6.19.00 PM.jpeg", alt: "Student Success" },
-  { url: "/environment/WhatsApp Image 2026-01-06 at 11.41.28 PM.jpeg", alt: "Community Event" },
-  { url: "/environment/WhatsApp Image 2026-01-06 at 11.41.30 PM.jpeg", alt: "Vibrant Campus" },
-  { url: "/environment/WhatsApp Image 2026-01-06 at 9.16.59 PM.jpeg", alt: "Modern Facilities" },
-  { url: "/environment/WhatsApp Image 2026-01-06 at 9.18.05 PM (1).jpeg", alt: "Student Projects" },
-  { url: "/environment/WhatsApp Image 2026-01-07 at 11.11.24 PM.jpeg", alt: "Growth & Development" },
-]
-
 export default function Gallery() {
   const sectionRef = useRef<HTMLElement>(null)
   const [images, setImages] = useState<string[]>([])
@@ -35,10 +18,9 @@ export default function Gallery() {
       try {
         const response = await fetch("/api/gallery")
         const data = await response.json()
+
         if (Array.isArray(data)) {
-          // Merge static images (from code) with dynamic images (from Blob)
-          const staticUrls = galleryImages.map(img => img.url)
-          setImages([...staticUrls, ...data])
+          setImages(data)
         }
       } catch (error) {
         console.error("Error fetching gallery images:", error)
@@ -46,6 +28,7 @@ export default function Gallery() {
         setLoading(false)
       }
     }
+
     fetchImages()
   }, [])
 
@@ -99,7 +82,6 @@ export default function Gallery() {
 
         <div className="grid grid-cols-2 gap-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 lg:auto-rows-[250px]">
           {images.map((url, index) => {
-            // Curated layout pattern for a premium masonry-like feel
             const isWide = index % 7 === 0 || index % 11 === 0
             const isTall = index % 5 === 0 || index % 13 === 0
 
@@ -131,7 +113,6 @@ export default function Gallery() {
         )}
       </div>
 
-      {/* Lightbox */}
       {lightboxImage && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4"
@@ -143,6 +124,7 @@ export default function Gallery() {
           >
             <X className="h-6 w-6" />
           </button>
+
           <div className="relative max-h-[90vh] max-w-[90vw]">
             <img
               src={lightboxImage || "/placeholder.svg"}

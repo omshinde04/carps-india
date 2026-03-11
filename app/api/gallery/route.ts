@@ -1,20 +1,23 @@
-import { NextResponse } from 'next/server';
-import { list } from '@vercel/blob';
-
-export const revalidate = 60; // Cache for 1 minute
+import { NextResponse } from "next/server";
 
 export async function GET() {
-    try {
-        // List all blobs. In a real app you might want to filter by a prefix or folder.
-        const { blobs } = await list();
-        // Return just the URLs (or objects if the frontend expects objects)
-        // The frontend expects array of strings according to the `setImages` type in gallery.tsx?
-        // Wait, gallery.tsx: `const [images, setImages] = useState<string[]>([])`
-        // And it maps `url`.
-        // So I should return an array of strings.
-        const imageUrls = blobs.map(blob => blob.url);
-        return NextResponse.json(imageUrls);
-    } catch (error) {
-        return NextResponse.json({ error: 'Failed to list images' }, { status: 500 });
-    }
+    const images = [
+        "/environment/carps-classroom-training-session.jpeg",
+        "/environment/carps-students-learning-environment.jpeg",
+        "/environment/carps-ai-training-classroom.jpeg",
+        "/environment/carps-digital-marketing-training.jpeg",
+        "/environment/carps-data-analytics-training-session.jpeg",
+        "/environment/carps-institute-classroom-learning.jpeg",
+        "/environment/carps-tech-training-students.jpeg",
+        "/environment/carps-professional-skill-training.jpeg",
+        "/environment/carps-corporate-readiness-session.jpeg",
+        "/environment/carps-career-development-training.jpeg",
+        "/environment/carps-student-training-program.jpeg",
+        "/environment/carps-modern-learning-classroom.jpeg",
+        "/environment/carps-tech-coaching-session.jpeg",
+        "/environment/carps-students-attending-training.jpeg",
+        "/environment/carps-institute-learning-environment.jpeg"
+    ];
+
+    return NextResponse.json(images);
 }
