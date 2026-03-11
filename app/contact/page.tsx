@@ -11,13 +11,34 @@ export default function ContactPage() {
         message: "",
     })
 
-    const handleSubmit = (e: React.FormEvent) => {
+    // const handleSubmit = (e: React.FormEvent) => {
+    //     e.preventDefault()
+    //     const subject = `Website Inquiry from ${formData.name}`
+    //     const body = `Name: ${formData.name}%0D%0APhone: ${formData.phone}%0D%0AMessage: ${formData.message}`
+    //     window.location.href = `mailto:admin@carpsindia.com?subject=${encodeURIComponent(subject)}&body=${body}`
+    // }
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        const subject = `Website Inquiry from ${formData.name}`
-        const body = `Name: ${formData.name}%0D%0APhone: ${formData.phone}%0D%0AMessage: ${formData.message}`
-        window.location.href = `mailto:admin@carpsindia.com?subject=${encodeURIComponent(subject)}&body=${body}`
-    }
 
+        const res = await fetch("/api/contact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+
+        if (res.ok) {
+            alert("Message sent successfully!")
+            setFormData({
+                name: "",
+                phone: "",
+                message: ""
+            })
+        } else {
+            alert("Something went wrong. Please try again.")
+        }
+    }
     return (
         <main className="min-h-screen bg-black text-white">
             {/* Header / Nav */}
