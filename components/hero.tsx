@@ -51,7 +51,7 @@ export default function Hero() {
     if (slideRef.current && textRef.current) {
       gsap.fromTo(
         slideRef.current,
-        { scale: 1.08, opacity: 0 },
+        { scale: 1.05, opacity: 0 },
         { scale: 1, opacity: 1, duration: 1.2 }
       )
 
@@ -77,47 +77,46 @@ export default function Hero() {
           className="h-full w-full object-cover"
         />
 
-        {/* Better readability overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
       </div>
 
       {/* Content */}
       <div
         ref={textRef}
-        className="relative z-10 flex h-full flex-col justify-center md:justify-center items-center text-center px-6"
+        className="relative z-10 flex h-full flex-col items-center justify-center text-center px-6"
       >
 
-        <div className="mb-3 text-[12px] md:text-sm tracking-[0.35em] uppercase text-red-500">
+        <div className="mb-4 text-[12px] md:text-sm tracking-[0.35em] uppercase text-red-500">
           CARPS INSTITUTE
         </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight max-w-3xl">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-tight max-w-5xl">
           {slides[currentSlide].title}
         </h1>
 
-        <p className="text-white/85 text-base sm:text-lg md:text-2xl mt-3 max-w-xl">
+        <p className="text-white/85 text-base sm:text-lg md:text-xl lg:text-2xl mt-4 max-w-2xl">
           {slides[currentSlide].subtitle}
         </p>
 
         {/* Buttons */}
-        <div className="flex flex-col gap-4 mt-8 w-full max-w-xs sm:flex-row sm:max-w-none">
+        <div className="flex flex-col gap-4 mt-8 w-full max-w-xs sm:flex-row sm:w-auto sm:max-w-none sm:mx-auto sm:justify-center">
 
           <Button
-            className="bg-red-600 hover:bg-red-700 text-white font-semibold py-6 text-lg rounded-xl shadow-xl"
+            className="bg-red-600 hover:bg-red-700 text-white font-semibold py-5 px-8 text-base md:py-5 md:px-10 md:text-base rounded-xl shadow-lg"
           >
             Explore Programs
           </Button>
 
           <Button
             variant="outline"
-            className="border-white text-white bg-white/10 backdrop-blur-md hover:bg-white hover:text-black py-6 text-lg rounded-xl"
+            className="border-white text-white bg-white/10 backdrop-blur-md hover:bg-white hover:text-black py-5 px-8 text-base md:py-5 md:px-10 md:text-base rounded-xl"
           >
             Meet Trainers
           </Button>
 
           <Button
             variant="outline"
-            className="border-white text-white bg-white/10 backdrop-blur-md hover:bg-white hover:text-black py-6 text-lg rounded-xl"
+            className="border-white text-white bg-white/10 backdrop-blur-md hover:bg-white hover:text-black py-5 px-8 text-base md:py-5 md:px-10 md:text-base rounded-xl"
           >
             Contact Us
           </Button>
@@ -127,7 +126,7 @@ export default function Hero() {
       </div>
 
       {/* Slider Controls */}
-      <div className="absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-4 z-20">
+      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-4 z-20">
 
         <button
           onClick={prev}
