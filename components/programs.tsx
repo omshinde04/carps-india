@@ -316,6 +316,7 @@ export default function Programs() {
 
   return (
     <section
+      id="programs"
       ref={sectionRef}
       className="relative bg-black px-6 py-12 md:px-12 md:py-20 lg:px-24"
     >

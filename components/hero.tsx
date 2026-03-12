@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 const slides = [
   {
@@ -97,28 +98,30 @@ export default function Hero() {
         <p className="text-white/85 text-base sm:text-lg md:text-xl lg:text-2xl mt-4 max-w-2xl">
           {slides[currentSlide].subtitle}
         </p>
-
         {/* Buttons */}
         <div className="flex flex-col gap-4 mt-8 w-full max-w-xs sm:flex-row sm:w-auto sm:max-w-none sm:mx-auto sm:justify-center">
 
           <Button
+            asChild
             className="bg-red-600 hover:bg-red-700 text-white font-semibold py-5 px-8 text-base md:py-5 md:px-10 md:text-base rounded-xl shadow-lg"
           >
-            Explore Programs
+            <a href="#programs">Explore Programs</a>
           </Button>
 
           <Button
+            asChild
             variant="outline"
             className="border-white text-white bg-white/10 backdrop-blur-md hover:bg-white hover:text-black py-5 px-8 text-base md:py-5 md:px-10 md:text-base rounded-xl"
           >
-            Meet Trainers
+            <a href="#trainers">Meet Trainers</a>
           </Button>
 
           <Button
+            asChild
             variant="outline"
             className="border-white text-white bg-white/10 backdrop-blur-md hover:bg-white hover:text-black py-5 px-8 text-base md:py-5 md:px-10 md:text-base rounded-xl"
           >
-            Contact Us
+            <Link href="/contact">Contact Us</Link>
           </Button>
 
         </div>
